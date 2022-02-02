@@ -12,9 +12,12 @@ public class Main {
         System.out.println("Insert the number of person id from 1 to 12, please.");
         Scanner scanner = new Scanner(System.in);
         String idNum = scanner.next();
-	    String url = "https://reqres.in/api/users?id=" + idNum;
+        final String URL = "https://reqres.in/api/users?id=";
+	    String url = URL + idNum;
 
-        String json = Parser.getJSON(url);
+        Parser parser = new Parser(url);
+
+        String json = parser.getJSON(url);
 
         try {
             JSONObject obj = new JSONObject(Objects.requireNonNull(json));

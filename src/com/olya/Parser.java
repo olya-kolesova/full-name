@@ -16,7 +16,7 @@ public class Parser {
         this.urlAddress = urlAddress;
     }
 
-    public static String getJSON(String urlAddress) {
+    public String getJSON(String urlAddress) {
         HttpsURLConnection con = null;
         try {
             URL u = new URL(urlAddress);
