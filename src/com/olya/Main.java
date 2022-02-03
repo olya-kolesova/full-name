@@ -12,8 +12,8 @@ public class Main {
         System.out.println("Insert the number of person id from 1 to 12, please.");
         Scanner scanner = new Scanner(System.in);
         String idNum = scanner.next();
-        final String URL = "https://reqres.in/api/users?id=";
-	    String url = URL + idNum;
+        static final String URL = "https://reqres.in/api/users?id=";
+    	String url = URL + idNum;
 
         Parser parser = new Parser(url);
 
