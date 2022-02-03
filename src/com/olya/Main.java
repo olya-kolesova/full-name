@@ -19,18 +19,12 @@ public class Main {
 
         String json = parser.getJSON(url);
 
-        try {
-            JSONObject obj = new JSONObject(Objects.requireNonNull(json));
-            String lastName1 = obj.getJSONObject("data").getString("last_name");
-            String firstName1 = obj.getJSONObject("data").getString("first_name");
-            Person person = new Person(firstName1, lastName1);
-            System.out.println(person.getFirstName() + " " + person.getLastName());
+        PersonGetter personGetter = new PersonGetter(json);
 
-        } catch (JSONException e) {
-            System.out.println("Error on parse data in JSONParser.java");
-        } catch (NullPointerException e) {
-            System.out.println("Null pointer");
-        }
+        String firstName = personGetter.parsePerson(json).getFirstName();
+        String lastName = personGetter.parsePerson(json).getLastName();
+
+        System.out.println(firstName + " " + lastName);
 
     }
 }
