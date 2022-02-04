@@ -20,9 +20,11 @@ public class Main {
         String json = parser.getJSON(url);
 
         PersonGetter personGetter = new PersonGetter(json);
+        
+        Person person = personGetter.parsePerson(json);
 
-        String firstName = personGetter.parsePerson(json).getFirstName();
-        String lastName = personGetter.parsePerson(json).getLastName();
+        String firstName = person.getFirstName();
+        String lastName = person.getLastName();
 
         System.out.println(firstName + " " + lastName);
 
