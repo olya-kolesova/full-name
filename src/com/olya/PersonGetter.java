@@ -7,6 +7,11 @@ import java.util.Objects;
 
 public class PersonGetter {
 
+        
+    static final String DATA = "data";
+    static final String LAST = "last_name";
+    static final String FIRST = "first_name";
+    
     private String json;
 
     PersonGetter(String json) {
@@ -16,10 +21,6 @@ public class PersonGetter {
     public Person parsePerson(String json) {
 
         Person person = null;
-
-        final String DATA = "data";
-        final String LAST = "last_name";
-        final String FIRST = "first_name";
 
         try {
             JSONObject obj = new JSONObject(Objects.requireNonNull(json));
