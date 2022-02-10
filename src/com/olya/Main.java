@@ -12,22 +12,21 @@ public class Main {
         System.out.println("Insert the number of person id from 1 to 12, please.");
         Scanner scanner = new Scanner(System.in);
         String idNum = scanner.next();
-	    String url = "https://reqres.in/api/users?id=" + idNum;
+        static final String URL = "https://reqres.in/api/users?id=";
+    	String url = URL + idNum;
 
-        String json = Parser.getJSON(url);
+        Parser parser = new Parser(url);
 
-        try {
-            JSONObject obj = new JSONObject(Objects.requireNonNull(json));
-            String lastName1 = obj.getJSONObject("data").getString("last_name");
-            String firstName1 = obj.getJSONObject("data").getString("first_name");
-            Person person = new Person(firstName1, lastName1);
-            System.out.println(person.getFirstName() + " " + person.getLastName());
+        String json = parser.getJSON(url);
 
-        } catch (JSONException e) {
-            System.out.println("Error on parse data in JSONParser.java");
-        } catch (NullPointerException e) {
-            System.out.println("Null pointer");
-        }
+        PersonGetter personGetter = new PersonGetter(json);
+        
+        Person person = personGetter.parsePerson(json);
+
+        String firstName = person.getFirstName();
+        String lastName = person.getLastName();
+
+        System.out.println(firstName + " " + lastName);
 
     }
 }
